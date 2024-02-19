@@ -12,3 +12,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+logging:
+  level:
+    dev.langchain4j.model.mistralai: DEBUG
+
+

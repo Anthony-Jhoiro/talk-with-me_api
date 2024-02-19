@@ -20,12 +20,23 @@ public class Message {
 
     public Message() {}
 
+    public enum Status {
+        ARCHIVED,
+        NOT_ARCHIVED;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(length = 512)
     private String message;
+
+    @Column(length = 24)
+    private String type;
+
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.NOT_ARCHIVED;
 
     @CreatedDate
     @OrderBy
@@ -34,4 +45,8 @@ public class Message {
     @ManyToOne
     private Companion companion;
 
+    @Override
+    public String toString() {
+        return type + ": " + message;
+    }
 }
